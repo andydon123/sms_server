@@ -20,15 +20,18 @@ app.get('/BaseAPI/1_0/Owners', async (req, res) => {
 
     try {
         // Отправляем СМС через iqsms.ru
-        await axios.get('https://api.iqsms.ru/messages/v2/send.json', {
-            params: {
-                login: 'z1629266838562',
-                password: '254475',
-                phone: user_phone,
-                text: `Ваш код подтверждения: ${input_code}`,
-                sender: 'MediaGramma'
-            }
-        });
+await axios.post('https://api.iqsms.ru/messages/v2/send.json', {
+    login: 'z1629266838562',
+    password: '254475',
+    messages: [
+        {
+            phone: user_phone,
+            text: `Ваш код подтверждения: ${input_code}`,
+            sender: 'MediaGramma',
+            clientId: Date.now().toString()
+        }
+    ]
+});
 
         return res.json({
             user_phone: user_phone,
