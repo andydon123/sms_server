@@ -20,10 +20,10 @@ app.get('/BaseAPI/1_0/Owners', async (req, res) => {
 
     try {
         // Отправляем СМС через iqsms.ru
-await axios.post('https://api.iqsms.ru/messages/v2/send.json', {
-    login: 'z1629266838562',
-    password: '254475',
-    messages: [
+        await axios.post('https://api.iqsms.ru/messages/v2/send.json', {
+            login: 'z1629266838562',
+            password: '254475',
+            messages: [
         {
             phone: user_phone,
             text: `Ваш код подтверждения: ${input_code}`,
