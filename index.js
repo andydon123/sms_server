@@ -39,11 +39,14 @@ app.get('/BaseAPI/1_0/Owners', async (req, res) => {
             status: 'ok'
         });
 
-    } catch (err) {
-        return res.status(500).json({
+    } } catch (err) {
+            return res.status(500).json({
             error: 'SMS send failed',
-            details: err.message
-        });
+            details: err.message,
+            iqsms_status: err.response?.status,
+            iqsms_data: err.response?.data
+    });
+}
     }
 });
 
